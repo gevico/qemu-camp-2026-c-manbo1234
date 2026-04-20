@@ -39,6 +39,16 @@ exercises/*/*
 !exercises/*/Makefile
 tests/test_*
 !tests/test_*.c
+!exercises/20_mybash/
+!exercises/20_mybash/src/
+!exercises/20_mybash/src/myfile/
+!exercises/20_mybash/src/mysed/
+!exercises/20_mybash/src/mytrans/
+!exercises/20_mybash/src/mywc/
+!exercises/20_mybash/src/myfile/main.c
+!exercises/20_mybash/src/mysed/main.c
+!exercises/20_mybash/src/mytrans/main.c
+!exercises/20_mybash/src/mywc/main.c
 
 # 测试结果
 test_results_summary.json

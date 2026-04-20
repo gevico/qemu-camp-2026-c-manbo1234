@@ -1,8 +1,16 @@
-myfile ./bin/mybash
-myfile ./obj/mybash/main.o
+#!/bin/bash
+set -e
 
-mysed s/unix/linux/ "unix is opensource. unix is free os."
+ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+MYBASH_DIR="$ROOT_DIR/exercises/20_mybash"
 
-mytrans ./src/mytrans/text.txt
+cd "$MYBASH_DIR"
 
-mywc ./src/mytrans/text.txt
+./bin/myfile ./bin/mybash
+./bin/myfile ./obj/mybash/main.o
+
+./bin/mysed s/unix/linux/ "unix is opensource. unix is free os."
+
+./bin/mytrans ./src/mytrans/text.txt
+
+./bin/mywc ./src/mytrans/text.txt

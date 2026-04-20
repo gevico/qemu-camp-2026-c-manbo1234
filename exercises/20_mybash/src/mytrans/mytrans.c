@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+void to_lowercase(char *str);
+
 void trim(char *str) {
     if (!str) {
         return;
