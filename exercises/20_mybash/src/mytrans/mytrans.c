@@ -121,6 +121,7 @@ int __cmd_mytrans(const char* filename) {
     }
 
     // 使用 strtok 按空格分割单词
+    
     char *word = strtok(line, " ");
     while (word != NULL) {
       to_lowercase(word);

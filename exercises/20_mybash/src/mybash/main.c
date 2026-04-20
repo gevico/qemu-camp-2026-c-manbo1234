@@ -75,7 +75,7 @@ int parse_input(char *input, char **args) {
   int i = 0;
   int in_quotes = 0;
   char *buf = input;
-  char arg_buf[MAX_INPUT];  // 临时存储当前正在解析的参数
+  char arg_buf[MAX_INPUT];
   int arg_buf_idx = 0;
 
   memset(arg_buf, 0, sizeof(arg_buf));
@@ -159,8 +159,8 @@ int main(int argc, char *argv[]) {
       const char *cmd_arg2 = (argc_parsed >= 3) ? args[2] : NULL;
 
       printf("cmd_name: %s\n", cmd_name);
-      printf("cmd_arg1: %s\n", cmd_arg1);
-      printf("cmd_arg2: %s\n", cmd_arg2);
+      printf("cmd_arg1: %s\n", cmd_arg1 ? cmd_arg1 : "(null)");
+      printf("cmd_arg2: %s\n", cmd_arg2 ? cmd_arg2 : "(null)");
 
       int found = 0;
       for (Command *cmd = commands; cmd->name != NULL; cmd++) {

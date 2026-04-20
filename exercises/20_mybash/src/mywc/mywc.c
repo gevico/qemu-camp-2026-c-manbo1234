@@ -18,8 +18,9 @@ unsigned int hash(const char *word) {
 // 检查字符是否构成单词的一部分
 bool is_valid_word_char(char c) { return isalpha(c) || c == '\''; }
 
-// 转换为小写
-char to_lower(char c) { return tolower(c); }
+char to_lower(char c) {
+  return (char)tolower((unsigned char)c);
+}
 
 static int compare_word_counts(const void *a, const void *b) {
   const WordCount *wa = *(WordCount * const *)a;

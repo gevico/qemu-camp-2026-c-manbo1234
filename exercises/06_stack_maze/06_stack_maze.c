@@ -16,7 +16,8 @@ static int visited[MAX_ROW][MAX_COL];
 static int parent_row[MAX_ROW][MAX_COL];
 static int parent_col[MAX_ROW][MAX_COL];
 
-static const int dr[] = {1, 0, -1, 0};
+// 按“上、右、下、左”的顺序搜索，能得到测试期望的 DFS 路径
+static const int dr[] = {-1, 0, 1, 0};
 static const int dc[] = {0, 1, 0, -1};
 
 static int dfs(int row, int col) {
