@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -I../../include
+CFLAGS = -Wall -I../../include -fPIE
 
 TARGET := mytrans
 LIBNAME := mytrans
