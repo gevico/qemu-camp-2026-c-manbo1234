@@ -21,13 +21,37 @@ bool is_valid_word_char(char c) { return isalpha(c) || c == '\''; }
 // 转换为小写
 char to_lower(char c) { return tolower(c); }
 
+static int compare_word_counts(const void *a, const void *b) {
+  const WordCount *wa = *(WordCount * const *)a;
+  const WordCount *wb = *(WordCount * const *)b;
+  if (wa->count != wb->count) {
+    return wb->count - wa->count;
+  }
+  return strcmp(wa->word, wb->word);
+}
+
 // 添加单词到哈希表
 void add_word(WordCount **hash_table, const char *word) {
   unsigned int index = hash(word);
   WordCount *entry = hash_table[index];
 
-    // TODO: 在这里添加你的代码
-    // I AM NOT DONE
+  while (entry != NULL) {
+    if (strcmp(entry->word, word) == 0) {
+      entry->count++;
+      return;
+    }
+    entry = entry->next;
+  }
+
+  entry = malloc(sizeof(WordCount));
+  if (entry == NULL) {
+    return;
+  }
+  strncpy(entry->word, word, MAX_WORD_LEN - 1);
+  entry->word[MAX_WORD_LEN - 1] = '\0';
+  entry->count = 1;
+  entry->next = hash_table[index];
+  hash_table[index] = entry;
 }
 
 // 打印单词统计结果
@@ -35,12 +59,38 @@ void print_word_counts(WordCount **hash_table) {
   printf("Word Count Statistics:\n");
   printf("======================\n");
 
-    // TODO: 在这里添加你的代码
-    // I AM NOT DONE
+  int total = 0;
+  for (int i = 0; i < HASH_SIZE; i++) {
+    for (WordCount *entry = hash_table[i]; entry != NULL; entry = entry->next) {
+      total++;
+    }
+  }
+
+  WordCount **nodes = malloc((size_t)total * sizeof(WordCount *));
+  if (nodes == NULL) {
+    return;
+  }
+
+  int idx = 0;
+  for (int i = 0; i < HASH_SIZE; i++) {
+    for (WordCount *entry = hash_table[i]; entry != NULL; entry = entry->next) {
+      nodes[idx++] = entry;
+    }
+  }
+
+  qsort(nodes, (size_t)total, sizeof(WordCount *), compare_word_counts);
+  for (int i = 0; i < total; i++) {
+    printf("%-20s %d\n", nodes[i]->word, nodes[i]->count);
+  }
+
+  free(nodes);
 }
 
 // 释放哈希表内存
 void wc_free_hash_table(WordCount **hash_table) {
+  if (hash_table == NULL) {
+    return;
+  }
   for (int i = 0; i < HASH_SIZE; i++) {
     WordCount *entry = hash_table[i];
     while (entry != NULL) {

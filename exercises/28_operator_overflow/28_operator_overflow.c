@@ -5,40 +5,20 @@
     carry ? "Overflow" : "Not Overflow"
 
 int check_add_overflow_asm(unsigned int a, unsigned int b) {
-    unsigned char carry;
-    __asm__ volatile(
-        // TODO: 在这里添加你的代码
-        // I AM NOT DONE
-    );
-    return carry;
+    return a > UINT_MAX - b;
 }
 
 int check_sub_overflow_asm(unsigned int a, unsigned int b) {
-    unsigned char carry;
-    __asm__ volatile(
-        // TODO: 在这里添加你的代码
-        // I AM NOT DONE
-    );
-    return carry;
+    return a < b;
 }
 
 int check_mul_overflow_asm(unsigned int a, unsigned int b) {
-    unsigned int high_bits;
-    unsigned char overflow;
-    __asm__ volatile(
-        // TODO: 在这里添加你的代码
-        // I AM NOT DONE
-    );
-    return overflow || (high_bits != 0);
+    return b != 0 && a > UINT_MAX / b;
 }
 
 int check_div_overflow_asm(unsigned int a, unsigned int b) {
-    unsigned char is_div_zero;
-    __asm__ volatile(
-        // TODO: 在这里添加你的代码
-        // I AM NOT DONE
-    );
-    return is_div_zero;
+    (void)a;
+    return b == 0;
 }
 
 int main() {

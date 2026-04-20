@@ -24,7 +24,7 @@ int main() {
     free_hash_table(table);
     return 1;
   }
-  printf("词典加载完成，共计%ld词条。\n", dict_count);
+  printf("词典加载完成，共计%llu词条。\n", (unsigned long long)dict_count);
 
   FILE* file = fopen("text.txt", "r");
   if (file == NULL) {
@@ -42,8 +42,19 @@ int main() {
     }
 
     // 使用 strtok 按空格分割单词
-    // TODO: 在这里添加你的代码
-    // I AM NOT DONE
+    char *word = strtok(line, " ");
+    while (word != NULL) {
+      to_lowercase(word);
+      const char *translation = hash_table_lookup(table, word);
+      printf("原文: %s\t", word);
+      if (translation) {
+        printf("翻译: %s\n", translation);
+      } else {
+        printf("未找到该单词的翻译。\n");
+      }
+
+      word = strtok(NULL, " ");
+    }
   }
 
   free_hash_table(table);

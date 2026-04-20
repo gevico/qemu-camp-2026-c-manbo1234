@@ -23,12 +23,28 @@ static void josephus_problem(int n, int k, int m) {
 
     // 起始位置移动到第 k 个
     for (int i = 1; i < k; ++i) {
-        // TODO: 在这里添加你的代码
-        // I AM NOT DONE
+        prev = current;
+        current = current->next;
     }
 
-    // TODO: 在这里添加你的代码
-    // I AM NOT DONE
+    for (int out = 0; out < n; ++out) {
+        if (current->next == current) {
+            printf("%d ", current->id);
+            free(current);
+            break;
+        }
+
+        for (int i = 1; i < m; ++i) {
+            prev = current;
+            current = current->next;
+        }
+
+        printf("%d ", current->id);
+        prev->next = current->next;
+        Node* next = current->next;
+        free(current);
+        current = next;
+    }
     
     printf("\n");
 }
