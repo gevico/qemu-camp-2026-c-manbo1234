@@ -1,7 +1,7 @@
 # src/mybash/Makefile
 
 CC = gcc
-CFLAGS = -Wall -I../../include
+CFLAGS = -Wall -I../../include -fPIE
 
 # 可执行文件名
 TARGET := mybash
@@ -23,7 +23,7 @@ all: $(TARGET_PATH)
 
 $(TARGET_PATH): $(OBJS)
 	@mkdir -p $(BINDIR)
-	$(CC) $(CFLAGS) -o $@ $^ $(LINKLIBS)
+	$(CC) $(CFLAGS) -pie -o $@ $^ $(LINKLIBS)
 
 $(OBJDIR)/%.o: %.c
 	@mkdir -p $(OBJDIR)

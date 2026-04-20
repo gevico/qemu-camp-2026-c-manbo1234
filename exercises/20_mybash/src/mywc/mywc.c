@@ -16,7 +16,7 @@ unsigned int hash(const char *word) {
 }
 
 // 检查字符是否构成单词的一部分
-bool is_valid_word_char(char c) { return isalpha(c) || c == '\''; }
+bool is_valid_word_char(char c) { return isalpha((unsigned char)c) || c == '\''; }
 
 char to_lower(char c) {
   return (char)tolower((unsigned char)c);

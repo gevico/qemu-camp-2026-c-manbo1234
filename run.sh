@@ -54,7 +54,7 @@ echo "🚀 运行程序:"
 echo "---------------"
 
 if [ "$EXERCISE_NAME" = "20_mybash" ]; then
-    (cd "$EXERCISE_DIR" && ./20_mybash)
+    (cd "$EXERCISE_DIR" && bash ../../tests/mybash_cmd.sh)
 else
     "$EXECUTABLE"
 fi
